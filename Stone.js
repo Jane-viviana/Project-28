@@ -2,6 +2,7 @@ class Stone{
     constructor(x,y,width,height){
        var options={
            'restitution':0.8,
+          // isStatic:true,
            'friction':1.0,
             'density':1.0
        }
@@ -14,7 +15,7 @@ class Stone{
     display(){
         var angle = this.body.angle;
         push();
-        translate(this.body.position.x,this.body.body.position.y);
+        translate(this.body.position.x,this.body.position.y);
         rotate(angle);
         stroke("white");
         imageMode(CENTER);

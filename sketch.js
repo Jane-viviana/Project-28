@@ -33,8 +33,9 @@ function setup() {
     mango6 = new Mango(575,120,15);
     tree = new Tree(600,200,30,30);
     boy = new Boy(250,275,30,30);
-    elastic = new Elastic(boy.body,{x:200, y:50});
-    stone = new Stone(275,275,30,30);
+    stone = new Stone(255,250,30,30);
+    elastic = new Elastic(stone.body,{x:250, y:250});
+    
    	Engine.run(engine);
   
 }
@@ -44,7 +45,13 @@ function draw() {
   rectMode(CENTER);
   Engine.update(engine);
   background(0);
- 
+  detectCollision(stone,mango);
+  detectCollision(stone,mango2);
+  detectCollision(stone,mango3);
+  detectCollision(stone,mango4);
+  detectCollision(stone,mango5);
+  detectCollision(stone,mango6);
+  
   tree.display();
   mango.display();
   mango2.display();
@@ -54,11 +61,13 @@ function draw() {
   mango6.display();
   ground.display();
   boy.display();
+  stone.display();
+  elastic.display();
   drawSprites();
  
 }
 function mouseDragged(){
-  Matter.Body.setPosition(boy.body, {x: mouseX , y: mouseY});
+  Matter.Body.setPosition(stone.body, {x: mouseX , y: mouseY});
 }
 
 
@@ -70,8 +79,16 @@ function keyPressed(){
   
   if(keyCode === 32){
 
-  elastic.attach(boy.body)
+  elastic.attach(stone.body)
   }
 }
+function detectCollision(lmango,lstone){
+  mangoBodyPosition = lmango.Body.Position;
+  stoneBodyPosition = lstone.Body.Position;
 
+    var distance=dist(stoneBodyPosition.x,stoneBodyPosition.y,mangoBodyPosition.x,mangoBodyPosition.y);
+    if(distance<-lmango.r+lstone.r){
+      Matter.Body.setStatic(lmango.body,false);
+    }
+}
 
