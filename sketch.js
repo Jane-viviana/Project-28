@@ -83,8 +83,8 @@ function keyPressed(){
   }
 }
 function detectCollision(lmango,lstone){
-  mangoBodyPosition = lmango.Body.Position;
-  stoneBodyPosition = lstone.Body.Position;
+  mangoBodyPosition = lmango.body.position;
+  stoneBodyPosition = lstone.body.position;
 
     var distance=dist(stoneBodyPosition.x,stoneBodyPosition.y,mangoBodyPosition.x,mangoBodyPosition.y);
     if(distance<-lmango.r+lstone.r){
